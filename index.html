@@ -41,13 +41,13 @@ body { margin: 0; background: var(--ink); color: var(--text); font-family: var(-
 .err { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); }
 /* метки над зданиями — «стекло»: тёмно-синее полупрозрачное, белый текст, тонкая ножка */
 .nova-tag, .go-tag { pointer-events: none; }
-.nova-tag .lbl, .go-tag .lbl { position: absolute; left: 0; transform: translate(-50%, -100%); bottom: 19px; white-space: nowrap;
-  display: flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 500; font-size: 11px; letter-spacing: .04em;
-  padding: 8px 14px; border-radius: 7px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 6px 20px rgba(0, 20, 60, .25); }
+.nova-tag .lbl, .go-tag .lbl { position: absolute; left: 0; transform: translate(-50%, -100%); bottom: 15px; white-space: nowrap;
+  display: flex; align-items: center; gap: 7px; font-family: var(--display); font-weight: 500; font-size: 9px; letter-spacing: .04em;
+  padding: 7px 11px; border-radius: 6px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 6px 20px rgba(0, 20, 60, .25); }
 .nova-tag .lbl { color: #fff; background: rgba(10, 40, 100, .72); border: 1px solid rgba(255, 255, 255, .55); }
-.nova-tag .lbl::before, .go-tag .lbl::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .3); flex: none; }
-.nova-tag .lbl::after, .go-tag .lbl::after { content: ""; position: absolute; left: 50%; bottom: -19px; width: 1px; height: 19px; background: rgba(255, 255, 255, .8); }
-.nova-tag .dot, .go-tag .dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; background: rgba(10, 40, 100, .8); transform: translate(-50%, -50%); box-sizing: border-box; }
+.nova-tag .lbl::before, .go-tag .lbl::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .3); flex: none; }
+.nova-tag .lbl::after, .go-tag .lbl::after { content: ""; position: absolute; left: 50%; bottom: -15px; width: 1px; height: 15px; background: rgba(255, 255, 255, .8); }
+.nova-tag .dot, .go-tag .dot { width: 8px; height: 8px; border-radius: 50%; border: 2px solid #fff; background: rgba(10, 40, 100, .8); transform: translate(-50%, -50%); box-sizing: border-box; }
 /* метка перехода на соседний ЖК — инверсия: белое стекло, синий текст */
 .pnlm-hotspot-base.go-tag { cursor: pointer; pointer-events: auto; }
 .go-tag .lbl { color: var(--navy); background: rgba(255, 255, 255, .86); border: 1px solid rgba(10, 40, 100, .35); }
