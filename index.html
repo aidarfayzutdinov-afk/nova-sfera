@@ -8,7 +8,8 @@
   --glass: rgba(14, 18, 21, .72);
   --text: #eef1f2;
   --muted: #a9b3b8;
-  --bronze: #c9a36a;       /* акцент метки ЖК */
+  --blue: #1b5fd6;         /* акцент: кнопки и метки */
+  --navy: #0a2864;
   --line: rgba(238, 241, 242, .16);
   --display: "Unbounded", "Golos Text", system-ui, sans-serif;
   --body: "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -27,8 +28,8 @@ body { margin: 0; background: var(--ink); color: var(--text); font-family: var(-
 }
 .name { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: .04em; }
 .name small { font-family: var(--body); font-weight: 500; font-size: 13px; letter-spacing: 0; color: var(--muted); margin-left: 8px; }
-.badge { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink);
-  background: var(--bronze); border-radius: 3px; padding: 3px 7px; }
+.badge { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #fff;
+  background: var(--blue); border-radius: 3px; padding: 3px 7px; }
 .hint { margin-left: auto; font-size: 13px; color: var(--muted); }
 .place {
   position: absolute; z-index: 3; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px));
@@ -38,27 +39,26 @@ body { margin: 0; background: var(--ink); color: var(--text); font-family: var(-
 .place b { font-weight: 600; }
 .place span { color: var(--muted); font-variant-numeric: tabular-nums; }
 .err { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); }
-/* метка на доме */
-.nova-tag { pointer-events: none; }
-.nova-tag .lbl { position: absolute; transform: translate(-50%, -100%); bottom: 12px; white-space: nowrap;
-  font-family: var(--display); font-weight: 500; font-size: 13px; letter-spacing: .06em; color: var(--ink);
-  background: var(--bronze); padding: 5px 9px; border-radius: 3px; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
-.nova-tag .lbl::after { content: ""; position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%);
-  border: 6px solid transparent; border-bottom: 0; border-top-color: var(--bronze); }
-.nova-tag .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--bronze); box-shadow: 0 0 0 3px rgba(201,163,106,.35); transform: translate(-50%, -50%); }
+/* метки над зданиями — «стекло»: тёмно-синее полупрозрачное, белый текст, тонкая ножка */
+.nova-tag, .go-tag { pointer-events: none; }
+.nova-tag .lbl, .go-tag .lbl { position: absolute; left: 0; transform: translate(-50%, -100%); bottom: 22px; white-space: nowrap;
+  display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 500; font-size: 13px; letter-spacing: .04em;
+  padding: 10px 16px; border-radius: 8px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 6px 20px rgba(0, 20, 60, .25); }
+.nova-tag .lbl { color: #fff; background: rgba(10, 40, 100, .72); border: 1px solid rgba(255, 255, 255, .55); }
+.nova-tag .lbl::before, .go-tag .lbl::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .3); flex: none; }
+.nova-tag .lbl::after, .go-tag .lbl::after { content: ""; position: absolute; left: 50%; bottom: -22px; width: 1px; height: 22px; background: rgba(255, 255, 255, .8); }
+.nova-tag .dot, .go-tag .dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; background: rgba(10, 40, 100, .8); transform: translate(-50%, -50%); box-sizing: border-box; }
+/* метка перехода на соседний ЖК — инверсия: белое стекло, синий текст */
+.pnlm-hotspot-base.go-tag { cursor: pointer; pointer-events: auto; }
+.go-tag .lbl { color: var(--navy); background: rgba(255, 255, 255, .86); border: 1px solid rgba(10, 40, 100, .35); }
+.go-tag .lbl::before { background: var(--blue); box-shadow: 0 0 0 3px rgba(27, 95, 214, .25); }
+.go-tag:hover .lbl, .go-tag:focus-visible .lbl { background: var(--blue); color: #fff; border-color: var(--blue); }
+.go-tag:hover .lbl::before, .go-tag:focus-visible .lbl::before { background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .3); }
 .switch { display: flex; gap: 6px; pointer-events: auto; }
 .switch button { font: 600 12px/1 var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--text);
   background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
-.switch button[aria-pressed="true"] { background: var(--bronze); border-color: var(--bronze); color: var(--ink); }
-.switch button:focus-visible { outline: 2px solid var(--bronze); outline-offset: 2px; }
-.pnlm-hotspot-base.go-tag { cursor: pointer; }
-.go-tag .lbl { position: absolute; transform: translate(-50%, -100%); bottom: 12px; white-space: nowrap;
-  font-family: var(--body); font-weight: 600; font-size: 12px; letter-spacing: .04em; color: var(--text);
-  background: var(--glass); border: 1px solid var(--bronze); padding: 5px 9px; border-radius: 3px; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
-.go-tag .lbl::after { content: ""; position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%);
-  border: 6px solid transparent; border-bottom: 0; border-top-color: var(--bronze); }
-.go-tag .dot { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--bronze); background: var(--ink); transform: translate(-50%, -50%); box-sizing: border-box; }
-.go-tag:hover .lbl, .go-tag:focus-visible .lbl { background: var(--bronze); color: var(--ink); }
+.switch button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.switch button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 @media (max-width: 520px) { .hint { display: none; } .name { font-size: 16px; } .name small { display: block; margin: 2px 0 0; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 /* Pannellum 2.5.6, https://github.com/mpetroff/pannellum */
